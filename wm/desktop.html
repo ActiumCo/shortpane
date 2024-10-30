@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>lazarus shortpane gui</title>
+        <link rel="stylesheet" href="wmstyle.css" />
+    </head>
+    <body class="enabled" id="myDIV">
+        <div class="menubar">
+            <p class="wmtex"> Menu Bar (Window & Global Options) </p>
+            <div class="framebuttons">
+                
+                <button d="foward" onclick="home();">Home</button>
+                <button id="back" onclick="hello();">Back</button>
+                <button d="foward" onclick="foward();">Forward</button>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <p class="wmtex"> Recently Opened </p>
+        </div>
+
+        <div class="application">
+            <webview id="foo" src="./apps/main.html" style="display:inline-flex; width:100%; height:100%"></webview>
+        </div>
+
+
+        <p class="respecttheworkmate">cgree</p>
+        <p class="dev">ShortPane UI | In Construction</p>
+    </body>
+</html>
+
+
+
+
+<script>
+    // Check resolution and start wm
+    mtype_h = window.screen.height
+    mtype_w = window.screen.width
+
+    gtype_w = 1920
+    gtype_h = 1080
+
+    let temperature = document.getElementById("myDIV");
+    console.log("End User: \nWindow should be maximum size, 1920x1080 is only available.")
+
+    //description.innerHTML = data.weather[0].main;
+
+    if (mtype_h < gtype_h || mtype_w < gtype_w) {
+        //document.getElementById("myDIV").firstElementChild.classList.remove('enabled')
+        if (!temperature) {
+            console.log("error has error? div doesnt exist in the code");
+        }
+
+        temperature.classList.remove("enabled");
+        temperature.innerHTML = '';
+
+        temperature.innerHTML = 'Please use ' + gtype_w + 'x' + gtype_h + ' as your resolution to use ShortPane.';
+        temperature.innerHTML += '<br> Place into fullscreen and refresh once ready.';
+
+    }
+
+    if (mtype_h > gtype_h || mtype_w > gtype_w ) {
+        //document.getElementById("myDIV").firstElementChild.classList.remove('enabled')
+        if (!temperature) {
+            console.log("error has error? div doesnt exist in the code");
+        }
+
+        temperature.classList.remove("enabled");
+        temperature.innerHTML = '';
+
+        temperature.innerHTML = 'Please size your resolution down to ' + gtype_w + 'x' + gtype_h + ' to use ShortPane.';
+        temperature.innerHTML += '<br> Place into fullscreen and refresh once ready.';
+
+    }
+
+
+
+    let foo = document.getElementById("foo");
+
+    function hello () {
+        foo.goBack();
+    }
+
+    function foward () {
+        foo.goForward();
+    }
+
+    function home () {
+        foo.src = "./apps/main.html"
+    }
+</script>
